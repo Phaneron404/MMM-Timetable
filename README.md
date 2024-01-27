@@ -42,6 +42,8 @@ This is a module for Magic Mirror which can display timetables for example in sc
 
 ### Configuration
 
+NOTE: Further explanations coming soon.
+
 #### Config
 
 | Attribute      | Description                                     |
@@ -114,6 +116,12 @@ Install Magic Mirror. [MagicMirror Documentation](https://docs.magicmirror.build
 
    ```sh
    npm run server
+   ```
+
+6. Open Magic Mirror in the Browser
+
+   ```url
+   http://localhost:8080/
    ```
 
 ### MMM-Timetable
