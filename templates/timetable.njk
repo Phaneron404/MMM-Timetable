@@ -1,0 +1,56 @@
+<style>
+
+td {
+  border: {{ config.borderWidth | safe }}px solid {{ config.borderColor | safe }};
+}
+
+.header {
+    color: white;
+    font-size: 2em;
+}
+
+span {
+  display: block;
+}
+
+.contentCell {
+  background: {{ config.cellColor | safe }};
+}
+
+.emptyCell {
+  background: {{ config.emptyCellColor | safe }};
+}
+
+.titleCell {
+  background: {{ config.titleCellColor | safe }};
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+</style>
+
+<div>
+  {% if config.header !== "" %}
+  <div class="header">{{ config.header | safe }}</div>
+  {% endif %}
+  <table>
+      {% for row in timeTable %}
+      <tr>
+          {% for cell in row.cells %}
+          <td>
+              {% for text in cell.texts %}
+              <span class="{{ utils.getCellType(cell, timeTable, config) }}">{{ text | safe }}</span>
+              {% endfor %}
+          </td>
+          {% endfor %}
+      </tr>
+      {% endfor %}
+  </table>
+</div>
