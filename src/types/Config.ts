@@ -1,12 +1,12 @@
 export type Config = {
-  srcCSV: string;
-  timeTable: Row[];
+  srcCSV?: string;
+  timeTable?: Row[];
   header?: string;
   borderWidth?: number;
   borderColor?: string;
   emptyCellColor?: string;
-  cellColor: string;
-  titleCellColor: string;
+  cellColor?: string;
+  titleCellColor?: string;
   titleRow?: number[];
   titleColumn?: number[];
   pagination?: Pagination;
