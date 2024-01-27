@@ -118,8 +118,6 @@ Install Magic Mirror. [MagicMirror Documentation](https://docs.magicmirror.build
 
 ### MMM-Timetable
 
-## Build
-
 1. Change directory to modules.
 
    ```sh
