@@ -3,9 +3,9 @@
   Version 1.0.0
 
   A Timetable to show subjects in school for the MagicMirror² platform.
-  Please submit bugs at https://github.com/
+  Please submit bugs at https://github.com/Phaneron404/MMM-Timetable/issues
 
-  (c) danielfranke@live.de
+  (c) Phaneron404
   Licence: MIT
 
   This file is auto-generated. Do not edit.

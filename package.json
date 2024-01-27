@@ -5,9 +5,9 @@
 	"main": "MMM-Timetable.js",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/"
+		"url": "git+https://github.com/Phaneron404/MMM-Timetable.git"
 	},
-	"author": "danielfranke@live.de",
+	"author": "Phaneron404",
 	"license": "MIT",
 	"keywords": [
 		"magicmirror",
@@ -15,9 +15,9 @@
 		"school"
 	],
 	"bugs": {
-		"url": "https://github.com/"
+		"url": "https://github.com/Phaneron404/MMM-Timetable/issues"
 	},
-	"homepage": "https://github.com/",
+	"homepage": "https://github.com/Phaneron404/MMM-Timetable#readme",
 	"scripts": {
 		"build": "rollup -c --bundleConfigAsCjs",
 		"dev": "rollup -c --sourcemap=inline --bundleConfigAsCjs",
