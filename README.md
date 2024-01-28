@@ -82,6 +82,44 @@ NOTE: Further explanations coming soon.
 | duration  | A number representing the duration.                   |
 | maxValues | A number representing the maximum allowed values.     |
 
+## Update
+
+### Magic Mirror
+
+See [Upgrade Guide](https://docs.magicmirror.builders/getting-started/upgrade-guide.html)
+
+1. Change directory to MagicMirror for example.
+
+```sh
+cd ~/MagicMirror/
+```
+
+2. Update
+
+```sh
+git pull && npm run install-mm
+```
+
+### Timetable
+
+1. Change directory to MagicMirror for example.
+
+```sh
+cd ~/MagicMirror/modules/MMM-Timetable
+```
+
+2. Update
+
+```sh
+git pull && npm install --only=production
+```
+
+3. Restart Magic Mirror
+
+```sh
+pm2 restart mm
+```
+
 ## Geting Started Development
 
 ### Magic Mirror
