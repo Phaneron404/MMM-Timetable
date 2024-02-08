@@ -33,7 +33,7 @@ export default [
     }
   },
   {
-    input: './src/helper/Helper.ts',
+    input: './src/backend/Backend.ts',
     external: ['node_helper', 'logger'],
     plugins: [typescript({ module: 'ESNext' }), nodeResolve(), terser(), banner2(() => bannerText)],
     output: {

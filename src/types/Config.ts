@@ -10,6 +10,7 @@ export type Config = {
   titleRow?: number[];
   titleColumn?: number[];
   pagination?: Pagination;
+  reloadAt?: Time;
 };
 
 export type Row = {
@@ -26,4 +27,9 @@ export type Pagination = {
   keepFirst: boolean;
   duration: number;
   maxValues: number;
+};
+
+export type Time = {
+  hour: number;
+  minute: number;
 };

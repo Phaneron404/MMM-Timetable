@@ -7,7 +7,12 @@ export default class Utils {
       timeTable.forEach((row, rowIndex) => {
         row.cells.forEach((cell, cellIndex) => {
           if (cellToCheck.id === cell.id) {
-            if ((config.titleRow !== undefined && config.titleRow.includes(rowIndex)) || (config.titleColumn !== undefined && config.titleColumn.includes(cellIndex))) {
+            if (
+              (config.titleRow !== undefined &&
+                config.titleRow.includes(rowIndex)) ||
+              (config.titleColumn !== undefined &&
+                config.titleColumn.includes(cellIndex))
+            ) {
               cellType = "titleCell";
             }
           }

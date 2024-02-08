@@ -21,7 +21,9 @@ Module.register<Config>("MMM-Timetable", {
   start() {
     this.setDisplayedTimeTable();
     this.prepareTable();
-    this.scheduleUpdate();
+    this.schedulePaginationUpdate();
+    this.loadCSV();
+    this.scheduleReloadCSV();
   },
 
   setDisplayedTimeTable() {
@@ -38,7 +40,11 @@ Module.register<Config>("MMM-Timetable", {
               pushed = true;
               cellCount++;
             }
-            if (cellCount < this.config.pagination.maxValues && cellIndex > this.lastIndex && !pushed) {
+            if (
+              cellCount < this.config.pagination.maxValues &&
+              cellIndex > this.lastIndex &&
+              !pushed
+            ) {
               newRow.cells.push(cell);
               cellCount++;
             }
@@ -69,16 +75,54 @@ Module.register<Config>("MMM-Timetable", {
   },
 
   getTemplateData() {
-    return { config: this.config, timeTable: this.displayedTimeTable, utils: Utils };
+    return {
+      config: this.config,
+      timeTable: this.displayedTimeTable,
+      utils: Utils
+    };
   },
 
-  scheduleUpdate() {
+  schedulePaginationUpdate() {
     if (this.config.pagination !== undefined) {
       setInterval(() => {
-        this.setDisplayedTimeTable();
-        this.prepareTable();
-        this.updateDom();
+        this.updateTimeTable();
       }, this.config.pagination.duration * 1000);
+    }
+  },
+
+  scheduleReloadCSV() {
+    if (this.config.reloadAt !== undefined) {
+      setInterval(() => {
+        const now = new Date();
+        if (
+          now.getHours() == this.config.reloadAt.hour &&
+          now.getMinutes() == this.config.reloadAt.minute
+        ) {
+          this.loadCSV();
+        }
+      }, 60 * 1000);
+    }
+  },
+
+  loadCSV() {
+    if (this.config.srcCSV !== "" && this.config.srcCSV !== undefined) {
+      this.sendSocketNotification("READ_CSV", {
+        filePath: this.config.srcCSV
+      });
+    }
+  },
+
+  updateTimeTable() {
+    this.setDisplayedTimeTable();
+    this.prepareTable();
+    this.updateDom();
+  },
+
+  socketNotificationReceived: function (notification, payload) {
+    if (notification === "CSV_DATA") {
+      // Handle received CSV data
+      this.config.timeTable = payload;
+      this.updateTimeTable();
     }
   }
 });

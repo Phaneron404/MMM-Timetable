@@ -42,23 +42,22 @@ This is a module for Magic Mirror which can display timetables for example in sc
 
 ### Configuration
 
-NOTE: Further explanations coming soon.
-
 #### Config
 
-| Attribute      | Description                                     |
-| -------------- | ----------------------------------------------- |
-| srcCSV         | The source of a CSV file.                       |
-| timeTable      | A List of Rows                                  |
-| header         | A string for the table header.                  |
-| borderWidth    | Number indicating the border width.             |
-| borderColor    | String indicating the border color.             |
-| emptyCellColor | String indicating the color of empty cells.     |
-| cellColor      | String indicating the color of non-empty cells. |
-| titleCellColor | String indicating the color of title cells.     |
-| titleRow       | Array of numbers specifying title rows.         |
-| titleColumn    | Array of numbers specifying title columns.      |
-| pagination     | Object containing pagination configuration.     |
+| Attribute      | Description                                                |
+| -------------- | ---------------------------------------------------------- |
+| srcCSV         | The source of a CSV file which holds the table data.       |
+| timeTable      | A List of Rows                                             |
+| header         | A string for the table header.                             |
+| borderWidth    | Number indicating the border width.                        |
+| borderColor    | String indicating the border color.                        |
+| emptyCellColor | String indicating the color of empty cells.                |
+| cellColor      | String indicating the color of non-empty cells.            |
+| titleCellColor | String indicating the color of title cells.                |
+| titleRow       | Array of numbers specifying title rows.                    |
+| titleColumn    | Array of numbers specifying title columns.                 |
+| pagination     | Object containing pagination configuration.                |
+| reloadAt       | Object for the time of the day when the reload takes place |
 
 #### Row
 
@@ -81,6 +80,27 @@ NOTE: Further explanations coming soon.
 | keepFirst | A boolean indicating whether to keep the first value. |
 | duration  | A number representing the duration.                   |
 | maxValues | A number representing the maximum allowed values.     |
+
+#### reloadAt
+
+| Attribute | Description         |
+| --------- | ------------------- |
+| hours     | Hours from 0 to 23  |
+| minute    | Minute from 0 to 59 |
+
+### Using CSV
+
+When using a CSV File the delimiter has to be the comma (,).
+
+A new line inside a cell can be created with \n
+
+Example:
+
+```csv
+   ,Montag \n Mo,Dienstag \n Di,Mittwoch \n Mi,Donnerstag \n Do
+   8:00,Sport,Mathe,Deutsch,Mathe
+   9:00,Mathe,Sport,Sport,Physik
+```
 
 ## Update
 
