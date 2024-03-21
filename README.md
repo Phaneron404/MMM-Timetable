@@ -76,7 +76,7 @@ This is a module for Magic Mirror which can display timetables for example in sc
 
 | Attribute | Description                                           |
 | --------- | ----------------------------------------------------- |
-| mode      | A string representing the mode.                       |
+| mode      | A string representing the mode. At the moment only the mode 'column' exists                       |
 | keepFirst | A boolean indicating whether to keep the first value. |
 | duration  | A number representing the duration.                   |
 | maxValues | A number representing the maximum allowed values.     |
