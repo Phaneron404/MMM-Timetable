@@ -44,9 +44,9 @@ span {
       {% for row in timeTable %}
       <tr>
           {% for cell in row.cells %}
-          <td>
+          <td class="{{ utils.getCellType(cell, timeTable, config) }}">
               {% for text in cell.texts %}
-              <span class="{{ utils.getCellType(cell, timeTable, config) }}">{{ text | safe }}</span>
+              <span>{{ text | safe }}</span>
               {% endfor %}
           </td>
           {% endfor %}
