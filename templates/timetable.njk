@@ -1,27 +1,27 @@
 <style>
 
-td {
+.mmm-timetable td {
   border: {{ config.borderWidth | safe }}px solid {{ config.borderColor | safe }};
 }
 
-.header {
+.mmm-timetable .header {
     color: white;
     font-size: 2em;
 }
 
-span {
+.mmm-timetable span {
   display: block;
 }
 
-.contentCell {
+.mmm-timetable .contentCell {
   background: {{ config.cellColor | safe }};
 }
 
-.emptyCell {
+.mmm-timetable .emptyCell {
   background: {{ config.emptyCellColor | safe }};
 }
 
-.titleCell {
+.mmm-timetable .titleCell {
   background: {{ config.titleCellColor | safe }};
   font-weight: bold;
 }
@@ -36,7 +36,7 @@ span {
 }
 </style>
 
-<div>
+<div class="mmm-timetable">
   {% if config.header !== "" %}
   <div class="header">{{ config.header | safe }}</div>
   {% endif %}

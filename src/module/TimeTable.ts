@@ -10,7 +10,7 @@ Module.register<Config>("MMM-Timetable", {
     srcCSV: "",
     timeTable: [],
     borderWidth: 5,
-    borderColor: "rgba(0, 0, 0, 0)",
+    borderColor: "rgb(0, 0, 0)",
     cellColor: "#1E1E20",
     titleCellColor: "#B7410E",
     emptyCellColor: "rgba(0, 0, 0, 0)",
