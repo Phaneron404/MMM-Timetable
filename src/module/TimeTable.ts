@@ -6,24 +6,41 @@ Module.register<Config>("MMM-Timetable", {
 
   lastIndex: -1,
 
+  activeMqttId: "",
+
   defaults: {
     srcCSV: "",
     timeTable: [],
+    mqttTimeTables: [],
     borderWidth: 5,
     borderColor: "rgb(0, 0, 0)",
     cellColor: "#1E1E20",
     titleCellColor: "#B7410E",
     emptyCellColor: "rgba(0, 0, 0, 0)",
     titleRow: [0],
-    titleColumn: [0]
+    titleColumn: [0],
+    mqttBrokerUrl: "",
+    mqttOptions: {},
+    mqttTopic: ""
   },
 
   start() {
+    this._setupMqtt();
     this.setDisplayedTimeTable();
     this.prepareTable();
     this.schedulePaginationUpdate();
     this.loadCSV();
     this.scheduleReloadCSV();
+  },
+
+  _setupMqtt() {
+    if (this.config.mqttBrokerUrl && this.config.mqttTopic) {
+      this.sendSocketNotification("CONNECT_MQTT", {
+        brokerUrl: this.config.mqttBrokerUrl,
+        options: this.config.mqttOptions,
+        topic: this.config.mqttTopic
+      });
+    }
   },
 
   setDisplayedTimeTable() {
@@ -57,7 +74,17 @@ Module.register<Config>("MMM-Timetable", {
         }
       }
     } else {
-      this.displayedTimeTable = this.config.timeTable;
+      if (
+        this.config.mqttTimeTables &&
+        this.activeMqttId &&
+        this.activeMqttId !== ""
+      ) {
+        this.displayedTimeTable = this.config.mqttTimeTables.find(
+          (item) => item.mqttId === this.activeMqttId
+        )?.timeTable;
+      } else {
+        this.displayedTimeTable = this.config.timeTable;
+      }
     }
   },
 
@@ -122,6 +149,9 @@ Module.register<Config>("MMM-Timetable", {
     if (notification === "CSV_DATA") {
       // Handle received CSV data
       this.config.timeTable = payload;
+      this.updateTimeTable();
+    } else if (notification === "MQTT_DATA") {
+      this.activeMqttId = payload;
       this.updateTimeTable();
     }
   }

@@ -31,6 +31,7 @@
 		"@rollup/plugin-terser": "^0.4.4",
 		"@rollup/plugin-typescript": "^11.1.6",
 		"@types/magicmirror-module": "^2.16.5",
+		"@types/mqtt": "^0.0.34",
 		"@typescript-eslint/eslint-plugin": "^6.19.1",
 		"@typescript-eslint/parser": "^6.19.1",
 		"eslint": "^8.56.0",
@@ -43,6 +44,7 @@
 	},
 	"dependencies": {
 		"csv-parse": "^5.5.3",
-		"csv-parser": "^3.0.0"
+		"csv-parser": "^3.0.0",
+		"mqtt": "^5.13.3"
 	}
 }

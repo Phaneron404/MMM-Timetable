@@ -6,6 +6,9 @@
     "noImplicitThis": true,
     "sourceMap": false,
     "target": "es6",
-    "lib": ["DOM", "ESNext"]
+    "lib": ["DOM", "ESNext"],
+    "typeRoots": ["node_modules/@types"],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   }
 }

@@ -1,6 +1,7 @@
 export type Config = {
   srcCSV?: string;
   timeTable?: Row[];
+  mqttTimeTables?: MqttTimeTable[];
   header?: string;
   borderWidth?: number;
   borderColor?: string;
@@ -11,6 +12,9 @@ export type Config = {
   titleColumn?: number[];
   pagination?: Pagination;
   reloadAt?: Time;
+  mqttBrokerUrl: string;
+  mqttOptions: any;
+  mqttTopic: string;
 };
 
 export type Row = {
@@ -32,4 +36,9 @@ export type Pagination = {
 export type Time = {
   hour: number;
   minute: number;
+};
+
+export type MqttTimeTable = {
+  mqttId: string;
+  timeTable: Row[];
 };
