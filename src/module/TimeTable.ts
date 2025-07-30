@@ -28,9 +28,11 @@ Module.register<Config>("MMM-Timetable", {
     this._setupMqtt();
     this.setDisplayedTimeTable();
     this.prepareTable();
-    this.schedulePaginationUpdate();
-    this.loadCSV();
-    this.scheduleReloadCSV();
+
+    //At the moment not needed
+    // this.schedulePaginationUpdate();
+    // this.loadCSV();
+    // this.scheduleReloadCSV();
   },
 
   _setupMqtt() {
@@ -45,6 +47,7 @@ Module.register<Config>("MMM-Timetable", {
 
   setDisplayedTimeTable() {
     this.displayedTimeTable = [];
+    // At the moment Pagination does mot work. Only with mqtt.
     if (this.config.pagination !== undefined) {
       if (this.config.pagination.mode == "column") {
         this.config.timeTable.forEach((row) => {
@@ -79,9 +82,21 @@ Module.register<Config>("MMM-Timetable", {
         this.activeMqttId &&
         this.activeMqttId !== ""
       ) {
-        this.displayedTimeTable = this.config.mqttTimeTables.find(
+        const mqttTimeTable = this.config.mqttTimeTables.find(
           (item) => item.mqttId === this.activeMqttId
-        )?.timeTable;
+        );
+
+        if (mqttTimeTable) {
+          if (mqttTimeTable.timeTable) {
+            this.displayedTimeTable = mqttTimeTable.timeTable;
+          }
+
+          if (mqttTimeTable.csvName) {
+            this.sendSocketNotification("READ_CSV", {
+              filePath: mqttTimeTable.csvName
+            });
+          }
+        }
       } else {
         this.displayedTimeTable = this.config.timeTable;
       }
@@ -148,8 +163,9 @@ Module.register<Config>("MMM-Timetable", {
   socketNotificationReceived: function (notification, payload) {
     if (notification === "CSV_DATA") {
       // Handle received CSV data
-      this.config.timeTable = payload;
-      this.updateTimeTable();
+      this.displayedTimeTable = payload;
+      // this.prepareTable();
+      // this.updateDom();
     } else if (notification === "MQTT_DATA") {
       this.activeMqttId = payload;
       this.updateTimeTable();

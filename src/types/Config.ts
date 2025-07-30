@@ -40,5 +40,6 @@ export type Time = {
 
 export type MqttTimeTable = {
   mqttId: string;
-  timeTable: Row[];
+  csvName?: string;
+  timeTable?: Row[];
 };
