@@ -91,9 +91,9 @@ Module.register<Config>("MMM-Timetable", {
             this.displayedTimeTable = mqttTimeTable.timeTable;
           }
 
-          if (mqttTimeTable.csvName) {
+          if (mqttTimeTable.csvSrc) {
             this.sendSocketNotification("READ_CSV", {
-              filePath: mqttTimeTable.csvName
+              filePath: mqttTimeTable.csvSrc
             });
           }
         }
